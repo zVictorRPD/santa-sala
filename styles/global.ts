@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin: 0 auto;
-  margin-top: 40px;
+  margin: 50px auto;
   padding: 0 15px;
   width: 100%;
 
@@ -26,4 +25,20 @@ export const Container = styled.div`
     max-width: 1320px;
     padding: 0;
   }
+`;
+
+export const FlexCenter = styled.div`
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+`;
+
+export const Flex = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;
