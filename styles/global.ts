@@ -27,15 +27,6 @@ export const Container = styled.div`
   }
 `;
 
-export const FlexCenter = styled.div`
-  @media (max-width: 768px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-`;
-
 export const Flex = styled.div`
   display: flex;
   justify-content: center;
