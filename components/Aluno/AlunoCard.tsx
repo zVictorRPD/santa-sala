@@ -39,7 +39,7 @@ export default function AlunoCard(props: AlunoCardProps) {
                             <Tooltip placement="bottom" title='Visualizar prévia do aluno' key={'Visualizar'}>
                                 <ArrowsAltOutlined onClick={() => props.showModal(props.aluno)} />
                             </Tooltip>,
-                            <Link href={`alunos/${props.aluno?.name}?id=${props.aluno.id}`} key={'Página do aluno'}>
+                            <Link href={`alunos/${props.aluno?.nickname}?id=${props.aluno.id}`} key={'Página do aluno'}>
                                 <Tooltip placement="bottom" title='Ver página do aluno'>
                                     <EyeOutlined />
                                 </Tooltip>
@@ -47,8 +47,8 @@ export default function AlunoCard(props: AlunoCardProps) {
                         ]}
                     >
                         <Meta
-                            avatar={<Avatar src={props.aluno?.profile} />}
-                            title={props.aluno?.name}
+                            avatar={<Avatar size={48} src={props.aluno?.profile} />}
+                            title={props.aluno?.nickname}
                             description={<Text italic>{`"${props.aluno?.phrase}"`}</Text>}
                         />
                     </Card>

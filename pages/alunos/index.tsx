@@ -62,10 +62,7 @@ export default function alunos() {
           )
         })}
       </Row>
-
       <AlunoModal handleOk={handleOk} modalAluno={modalAluno} isModalVisible={isModalVisible} handleCancel={handleCancel} />
-
     </>
-
   )
 }

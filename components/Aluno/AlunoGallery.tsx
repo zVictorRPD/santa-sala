@@ -1,9 +1,7 @@
 
 import { Image } from "antd";
 import { Flex } from "../../styles/global";
-import {
-    EyeOutlined,
-} from '@ant-design/icons';
+import {EyeOutlined} from '@ant-design/icons';
 import styles from './style.module.sass'
 import { Ialuno } from "../../interface/student";
 

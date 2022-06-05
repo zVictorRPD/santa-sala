@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Avatar, Badge, Col, Row, Typography } from "antd";
 import { Ialuno } from '../../interface/student';
 import { Flex } from "../../styles/global";
@@ -13,7 +12,7 @@ import {
 import styles from './style.module.sass'
 
 interface AlunoHeaderProps {
-    aluno?: Ialuno;
+  aluno?: Ialuno;
 }
 
 
@@ -41,7 +40,7 @@ export default function AlunoHeader(props: AlunoHeaderProps) {
           <Paragraph style={{ textAlign: 'justify' }}>
             <Text strong>Descrição:</Text> {props.aluno?.description}
           </Paragraph>
-          <Paragraph>
+          <Paragraph style={{ marginTop: '.5rem' }}>
             <>
               <Text strong>Tags:</Text>
               {props.aluno?.tags.map((tag, index) => { return <Badge style={{ marginLeft: '5px' }} count={tag} key={index} /> })}

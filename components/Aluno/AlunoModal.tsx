@@ -30,7 +30,7 @@ export default function AlunoModal(props: AlunoModalProps) {
             onCancel={props.handleCancel}
             footer={[
                 <Button key="link" type='primary'>
-                    <Link href={`alunos/${props.modalAluno?.name}?id=${props.modalAluno?.id}`}>Ver perfil</Link>
+                    <Link href={`alunos/${props.modalAluno?.nickname}?id=${props.modalAluno?.id}`}>Ver perfil</Link>
                 </Button>
             ]}
         >
@@ -50,7 +50,7 @@ export default function AlunoModal(props: AlunoModalProps) {
             <Paragraph style={{ textAlign: 'justify' }}>
                 <Text strong>Descrição:</Text> {props.modalAluno?.description}
             </Paragraph>
-            <Paragraph>
+            <Paragraph style={{marginTop:'.5rem'}}>
                 <>
                     <Text strong>Tags:</Text>
                     {props.modalAluno?.tags?.map((tag, index) => { return <Badge style={{marginLeft:'5px'}}count={tag} key={index}/> })}
