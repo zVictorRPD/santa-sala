@@ -30,7 +30,7 @@ export default function AlunoModal(props: AlunoModalProps) {
             onCancel={props.handleCancel}
             footer={[
                 <Button key="link" type='primary'>
-                    <Link href={`alunos/${props.modalAluno?.name}`}>Ver perfil</Link>
+                    <Link href={`alunos/${props.modalAluno?.name}?id=${props.modalAluno?.id}`}>Ver perfil</Link>
                 </Button>
             ]}
         >

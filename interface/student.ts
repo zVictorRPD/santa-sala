@@ -4,10 +4,11 @@ export interface Ialuno {
   nickname: string;
   profile: string;
   banner: string;
-  photos: string[];
-  masterTag: string;
+  gallery: string[];
+  mastertag: string;
   tags: string[];
   phrase: string;
+  phrases: string[];
   description: string;
   social: {
     twitter?: string;

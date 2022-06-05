@@ -17,10 +17,11 @@ interface AlunoCardProps {
 
 const { Text } = Typography;
 export default function AlunoCard(props: AlunoCardProps) {
+
     return (
         <Col xs={24} sm={24} md={12} lg={8} xl={8} xxl={6} key={props.aluno.id}>
             <Flex>
-                <Badge.Ribbon text={props.aluno.masterTag || 'não informado'} color="red">
+                <Badge.Ribbon text={props.aluno.mastertag || 'não informado'} color="red">
                     <Card
                         style={{ width: 300 }}
                         cover={
@@ -38,7 +39,7 @@ export default function AlunoCard(props: AlunoCardProps) {
                             <Tooltip placement="bottom" title='Visualizar prévia do aluno' key={'Visualizar'}>
                                 <ArrowsAltOutlined onClick={() => props.showModal(props.aluno)} />
                             </Tooltip>,
-                            <Link href={`alunos/${props.aluno?.name}`} key={'Página do aluno'}>
+                            <Link href={`alunos/${props.aluno?.name}?id=${props.aluno.id}`} key={'Página do aluno'}>
                                 <Tooltip placement="bottom" title='Ver página do aluno'>
                                     <EyeOutlined />
                                 </Tooltip>
