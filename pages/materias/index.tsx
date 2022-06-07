@@ -7,7 +7,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import app from "../../services/Firebase"
 
 import { useRecoilState } from 'recoil';
-import { Container, FluxContainer, Overflow, SubjectCard, SubjectCardBody, SubjectCardHeader } from './style';
+import { Container, FluxContainer, Overflow, SubjectCard, SubjectCardBody, SubjectCardHeader } from '../../styles/style';
 const { Title, Paragraph } = Typography;
 import {
     PartitionOutlined,
@@ -29,7 +29,7 @@ const fakeData: Imateria = {
     optional: false
 }
 
-export default function professors() {
+export default function Professors() {
 
     const [materias, setMaterias] = useRecoilState(materiasArray);
     const [cardLoading, setCardLoading] = useState(true);
@@ -75,7 +75,7 @@ export default function professors() {
                         {[...Array(8)].map((col, index) => {
                             return (
                                 <Col key={index} span={3}>
-                                    {[...materias].map((subject, i) => {
+                                    {[...materias,...materias,...materias,...materias,...materias,...materias,...materias,...materias,].map((subject, i) => {
                                         return (
                                             <Card
                                                 key={i}

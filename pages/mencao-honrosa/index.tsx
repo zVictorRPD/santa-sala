@@ -1,3 +1,3 @@
-export default function honrosa(){
+export default function Honrosa(){
     return(<h1>Menções honrosas</h1>)
 }

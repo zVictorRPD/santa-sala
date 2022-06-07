@@ -9,16 +9,21 @@ export const Container = styled.div`
 `;
 export const FluxContainer = styled(ScrollContainer)`
   overflow-x: auto;
+  overflow-y: auto;
+  max-height: 100%;
+  height: 100%;
   max-width: 100%;
   width: 100%;
 
   &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #f5f5f5;
   }
 
   &::-webkit-scrollbar {
     height: 6px;
+    width: 6px;
     background-color: #f5f5f5;
   }
 
@@ -28,6 +33,7 @@ export const FluxContainer = styled(ScrollContainer)`
 `;
 export const Overflow = styled.div`
   width: 2000px;
+  height: 800px;
 `;
 
 export const SubjectCard = styled.div`

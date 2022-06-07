@@ -27,7 +27,7 @@ const fakeData: Iprofessor = {
     }
 }
 
-export default function professors() {
+export default function Professors() {
 
     const [professor, setProfessor] = useRecoilState(professoresArray);
     const [modalProfessor, setModalProfessor] = useState<Iprofessor | undefined>();
