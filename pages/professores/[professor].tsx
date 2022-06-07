@@ -6,6 +6,7 @@ import app from "../../services/Firebase"
 import { getDatabase, ref, onValue, query } from "firebase/database";
 import ProfessorHeader from "../../components/Professor/ProfessorHeader";
 import ProfessorTabs from "../../components/Professor/ProfessorTabs";
+import { Container } from "../../styles/global";
 
 
 const fakeData: Iprofessor = {
@@ -19,8 +20,8 @@ const fakeData: Iprofessor = {
   phrases: ["string", "string"],
   description: "string",
   social: {
-      emails: ["string", "string"],
-      linkedin: "string",
+    emails: ["string", "string"],
+    linkedin: "string",
   }
 }
 
@@ -48,15 +49,14 @@ export default function professor() {
   }, [id])
 
   return (
-    <>
+    <Container>
       <Head>
         <title>Santa sala | {professor}</title>
         <meta name="description" content="professors da sala" />
       </Head>
 
       <ProfessorHeader professor={professorAtual} />
-
       <ProfessorTabs professor={professorAtual} />
-    </>
+    </Container>
   )
 }

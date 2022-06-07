@@ -37,11 +37,11 @@ export default function AlunoCard(props: AlunoCardProps) {
                         }
                         actions={[
                             <Tooltip placement="bottom" title='Visualizar prévia do aluno' key={'Visualizar'}>
-                                <ArrowsAltOutlined onClick={() => props.showModal(props.aluno)} />
+                                <EyeOutlined onClick={() => props.showModal(props.aluno)} />
                             </Tooltip>,
                             <Link href={`alunos/${props.aluno?.nickname}?id=${props.aluno.id}`} key={'Página do aluno'}>
                                 <Tooltip placement="bottom" title='Ver página do aluno'>
-                                    <EyeOutlined />
+                                    <ArrowsAltOutlined />
                                 </Tooltip>
                             </Link>,
                         ]}

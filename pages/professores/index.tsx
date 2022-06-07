@@ -8,6 +8,7 @@ import ProfessorModal from '../../components/Professor/ProfessorModal';
 import { getDatabase, ref, onValue } from "firebase/database";
 import app from "../../services/Firebase"
 import { useRecoilState } from 'recoil';
+import { Container } from '../../styles/global';
 const { Title, Paragraph } = Typography;
 
 const fakeData: Iprofessor = {
@@ -61,13 +62,13 @@ export default function professors() {
     };
 
     return (
-        <>
+        <Container>
             <Head>
                 <title>Santa sala | Professores</title>
                 <meta name="description" content="professors da sala" />
             </Head>
             <Title style={{ textAlign: 'center', marginBottom: '.5rem' }}>Professores</Title>
-            <Paragraph style={{ textAlign: 'center', marginBottom: '1rem' }}>Aqui você encontra todos os professores de Sistema de informação.</Paragraph>
+            <Paragraph style={{ textAlign: 'center', marginBottom: '1rem' }}>Aqui você encontra todos os professores de Sistemas de informação.</Paragraph>
             <hr style={{ marginBottom: '2rem' }} />
             <Row gutter={[16, 32]}>
                 {professor.map(professor => {
@@ -77,6 +78,6 @@ export default function professors() {
                 })}
             </Row>
             <ProfessorModal handleOk={handleOk} modalProfessor={modalProfessor} isModalVisible={isModalVisible} handleCancel={handleCancel} />
-        </>
+        </Container>
     )
 }

@@ -18,10 +18,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Header className='header-style'>
           <HeaderMenu />
         </Header>
-        <Content style={{backgroundColor: '#fff'}}>
-          <Container>
-            <Component {...pageProps} />
-          </Container>
+        <Content style={{ backgroundColor: '#fff' }}>
+          <Component {...pageProps} />
         </Content>
         <Footer style={{ textAlign: 'center' }}>
           Site criado por: zVictor_RPD com a colaboração de Felps e Paçoca <br />Todos os direitos reservados ©

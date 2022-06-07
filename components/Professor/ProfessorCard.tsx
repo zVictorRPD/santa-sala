@@ -37,11 +37,11 @@ export default function ProfessorCard(props: ProfessorCardProps) {
                         }
                         actions={[
                             <Tooltip placement="bottom" title='Visualizar prévia do professor' key={'Visualizar'}>
-                                <ArrowsAltOutlined onClick={() => props.showModal(props.professor)} />
+                                <EyeOutlined onClick={() => props.showModal(props.professor)} />
                             </Tooltip>,
                             <Link href={`professores/${props.professor?.name}?id=${props.professor.id}`} key={'Página do professor'}>
                                 <Tooltip placement="bottom" title='Ver página do professor'>
-                                    <EyeOutlined />
+                                    <ArrowsAltOutlined />
                                 </Tooltip>
                             </Link>,
                         ]}

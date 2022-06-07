@@ -8,6 +8,7 @@ import AlunoModal from '../../components/Aluno/AlunoModal';
 import { getDatabase, ref, onValue } from "firebase/database";
 import app from "../../services/Firebase"
 import { useRecoilState } from 'recoil';
+import { Container } from '../../styles/global';
 const { Title, Paragraph } = Typography;
 
 
@@ -47,13 +48,13 @@ export default function alunos() {
   };
 
   return (
-    <>
+    <Container>
       <Head>
         <title>Santa sala | Alunos</title>
         <meta name="description" content="alunos da sala" />
       </Head>
       <Title style={{ textAlign: 'center', marginBottom: '.5rem' }}>Alunos</Title>
-      <Paragraph style={{ textAlign: 'center', marginBottom: '1rem' }}>Aqui você encontra todos os alunos de Sistema de informação da turma de 2019.</Paragraph>
+      <Paragraph style={{ textAlign: 'center', marginBottom: '1rem' }}>Aqui você encontra todos os alunos de Sistemas de informação da turma de 2019.</Paragraph>
       <hr style={{ marginBottom: '2rem' }} />
       <Row gutter={[16, 32]}>
         {aluno.map(aluno => {
@@ -63,6 +64,6 @@ export default function alunos() {
         })}
       </Row>
       <AlunoModal handleOk={handleOk} modalAluno={modalAluno} isModalVisible={isModalVisible} handleCancel={handleCancel} />
-    </>
+    </Container>
   )
 }

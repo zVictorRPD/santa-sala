@@ -6,8 +6,7 @@ import app from "../../services/Firebase"
 import { getDatabase, ref, onValue, query } from "firebase/database";
 import AlunoHeader from "../../components/Aluno/AlunoHeader";
 import AlunoTabs from "../../components/Aluno/AlunoTabs";
-
-
+import { Container } from "../../styles/global";
 
 export default function aluno() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -32,7 +31,7 @@ export default function aluno() {
   }, [id])
 
   return (
-    <>
+    <Container>
       <Head>
         <title>Santa sala | {aluno}</title>
         <meta name="description" content="alunos da sala" />
@@ -41,6 +40,6 @@ export default function aluno() {
       <AlunoHeader aluno={alunoAtual} />
 
       <AlunoTabs aluno={alunoAtual} />
-    </>
+    </Container>
   )
 }
