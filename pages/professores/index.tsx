@@ -11,41 +11,26 @@ import { useRecoilState } from 'recoil';
 import { Container } from '../../styles/global';
 const { Title, Paragraph } = Typography;
 
-const fakeData: Iprofessor = {
-    id: "string",
-    name: "string",
-    profile: "https://lh3.googleusercontent.com/pw/AM-JKLVXy8WXUn1feI37hu-Dg5iYsE8jTBbnrIj2m9kIOmQoF7Q0J4ZOXcM6MWqcgRDZRkd08Uv9X_USc9LescpRoEIu-fgo85SLMXr-xc-aBPgE2OgBGz2ZhDz_Euv8h9mEj_BsuERYHQbn2cXi-r3Q6De9=w564-h820-no?authuser=0",
-    banner: "https://lh3.googleusercontent.com/pw/AM-JKLVXy8WXUn1feI37hu-Dg5iYsE8jTBbnrIj2m9kIOmQoF7Q0J4ZOXcM6MWqcgRDZRkd08Uv9X_USc9LescpRoEIu-fgo85SLMXr-xc-aBPgE2OgBGz2ZhDz_Euv8h9mEj_BsuERYHQbn2cXi-r3Q6De9=w564-h820-no?authuser=0",
-    masterSubject: "string",
-    subjects: ["string", "string"],
-    phrase: "string",
-    phrases: ["string", "string"],
-    description: "string",
-    social: {
-        emails: ["string", "string"],
-        linkedin: "string",
-    }
-}
 
 export default function Professors() {
 
     const [professor, setProfessor] = useRecoilState(professoresArray);
     const [modalProfessor, setModalProfessor] = useState<Iprofessor | undefined>();
     const [isModalVisible, setIsModalVisible] = useState(false);
-    // const ApiGetData = async () => {
-    //     const db = getDatabase(app);
-    //     const starCountRef = ref(db, "students/");
-    //     onValue(starCountRef, (snapshot) => {
-    //         setAluno([]);
-    //         snapshot.forEach((childSnapshot) => {
-    //             const childData: Ialuno = childSnapshot.val();
-    //             setAluno(aluno => [...aluno, childData])
-    //         });
-    //     });
-    // }
+    const ApiGetData = async () => {
+        const db = getDatabase(app);
+        const starCountRef = ref(db, "teachers/");
+        onValue(starCountRef, (snapshot) => {
+            setProfessor([]);
+            snapshot.forEach((childSnapshot) => {
+                const childData: Iprofessor = childSnapshot.val();
+                setProfessor(professor => [...professor, childData])
+            });
+        });
+    }
 
     useEffect(() => {
-        setProfessor([fakeData])
+        ApiGetData()
     }, [])
 
     const showModal = (professor: Iprofessor) => {

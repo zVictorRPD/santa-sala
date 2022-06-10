@@ -35,7 +35,7 @@ export default function ProfessorModal(props: ProfessorModalProps) {
                 <Avatar size={64} icon={<UserOutlined />} src={props.modalProfessor?.profile} />
             </Flex>
             <Flex style={{ marginTop: '16px' }}>
-                {props.modalProfessor?.social?.emails.map((mail, index) => ( <a key={index} target="_blank" href={mail} rel="noreferrer"><MailOutlined className={styles.modalIcon} /></a>)) }
+                {props.modalProfessor?.social?.email && <a href={`mailto:${props.modalProfessor?.social?.email}`} rel="noreferrer"><MailOutlined className={styles.modalIcon} /></a>}
                 {props.modalProfessor?.social?.linkedin && <a target="_blank" href={props.modalProfessor?.social?.linkedin} rel="noreferrer"><LinkedinOutlined className={styles.modalIcon} style={{ color: '#0077b5' }} /></a>}
             </Flex>
             <Paragraph className={styles.phraseLine}>

@@ -4,8 +4,9 @@ export interface IMateria {
     description: string;
     hours: number;
     dependence: object[];
-    lock: object[];
+    lock: string[];
     period: number;
     optional: boolean;
     state?: string | 'todo';
+    highlighted: boolean | false;
 }

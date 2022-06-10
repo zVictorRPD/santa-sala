@@ -1,6 +1,7 @@
 export interface Iprofessor {
   id: string;
   name: string;
+  nickname: string;
   profile: string;
   banner: string;
   masterSubject: string;
@@ -9,7 +10,7 @@ export interface Iprofessor {
   phrases: string[];
   description: string;
   social: {
-    emails: string[];
+    email: string;
     linkedin?: string;
   };
 }
