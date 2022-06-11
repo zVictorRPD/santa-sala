@@ -3,7 +3,7 @@ export interface IMateria {
     code: string;
     description: string;
     hours: number;
-    dependence: object[];
+    dependence: string[];
     lock: string[];
     period: number;
     optional: boolean;

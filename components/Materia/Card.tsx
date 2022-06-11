@@ -9,7 +9,7 @@ import {
 } from '@ant-design/icons';
 import { useRecoilState } from 'recoil';
 import { materiasArray } from '../../hooks/materia.hooks';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface MateriaCardProps {
     subject: IMateria;
@@ -21,30 +21,34 @@ interface MateriaCardProps {
 
 export default function MateriaCard(props: MateriaCardProps) {
     const [materias, setMaterias] = useRecoilState(materiasArray);
-    const [locks, setLocks] = useState<string[]>(['']);
+    const [locks, setLocks] = useState<string[]>(props?.subject.lock || ['']);
+    const [dependencies, setDependencies] = useState<string[]>(props?.subject.dependence || ['']);
+    const clearHighligths = () => {
+        const clearMaterias: any[] = [];
+        materias.map((materia) => {
+            clearMaterias.push({ ...materia, highlighted: false })
+        })
+        setMaterias(clearMaterias)
+    }
 
     const listHighlighted = (subject: IMateria) => {
-        
-        if (subject.lock !== undefined) setLocks(subject.lock);
+        clearHighligths();
 
-        setMaterias([]);
-        locks.map((subjectLock) => {
-            materias.map((materia) => {
-                console.log(subjectLock, materia);
-                
-                if (materia.name === subjectLock) {
-                    const data = { ...materia, highlighted: true }
-                    setMaterias(materias => [...materias, data])
-                } else {
-                    const data = { ...materia, highlighted: false }
-                    setMaterias(materias => [...materias, data])
-                }
-            })
+        
+        const highlightedLocks: any[] = [];
+        materias.map((materia) => {
+            if (locks.includes(materia.name) || dependencies.includes(materia.name) || subject === materia) {
+                highlightedLocks.push({ ...materia, highlighted: true })
+            } else {
+                highlightedLocks.push({ ...materia, highlighted: false })
+            }
         })
+        setMaterias(highlightedLocks)
     }
     return (
         <Card
             key={props.id}
+            bordered={false}
             loading={props.cardLoading}
             actions={[
                 <Tooltip placement="bottom" title='Destacar suas depêndencias' key={'Destacar'}>
@@ -55,7 +59,7 @@ export default function MateriaCard(props: MateriaCardProps) {
                 </Tooltip>,
             ]}
             bodyStyle={{ padding: '0' }}
-            style={{ marginBottom: 16 }}
+            style={{ marginBottom: 16, border: '1px solid rgb(119, 68, 156,.06)' }}
             className={props.subject.highlighted ? styles.highlighted : ''}
         >
             <SubjectCard>
