@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import ScrollContainer from 'react-indiana-drag-scroll'
+import ScrollContainer from "react-indiana-drag-scroll";
 
 export const Container = styled.div`
   margin: 50px auto;
   padding: 0 15px;
   width: 100%;
-  max-width: 95vw;
+  max-width: 100vw;
 `;
 export const FluxContainer = styled(ScrollContainer)`
   overflow-x: auto;
@@ -14,6 +14,7 @@ export const FluxContainer = styled(ScrollContainer)`
   height: 100%;
   max-width: 100%;
   width: 100%;
+  box-shadow: 0px 13px 10px 3px rgb(0 0 0 / 40%);
 
   &::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -28,12 +29,13 @@ export const FluxContainer = styled(ScrollContainer)`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #77449C;
+    background-color: #77449c;
   }
 `;
 export const Overflow = styled.div`
   width: 2000px;
-  height: 800px;
+  height: 94vh;
+  padding: 0 15px;
 `;
 
 export const SubjectCard = styled.div`

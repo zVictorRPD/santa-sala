@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { materiasArray } from '../../hooks/materia.hooks';
 import { Typography } from 'antd';
 import { IMateria } from '../../interface/subject';
-
+import { getDatabase, ref, onValue } from "firebase/database";
+import app from "../../services/Firebase"
 import { useRecoilState } from 'recoil';
 import { Container } from '../../components/Materia/style';
 import Content from '../../components/Materia/Content';
@@ -12,12 +13,10 @@ const { Title, Paragraph } = Typography;
 
 
 export default function Materia() {
-
     const [materias, setMaterias] = useRecoilState(materiasArray);
-    const [cardLoading, setCardLoading] = useState(true);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [modalData, setModalData] = useState<IMateria | undefined>();
-
+    const [cardLoading, setCardLoading] = useState(true);
     const showModal = (data: IMateria) => {
         setIsModalVisible(true);
         setModalData(data);
@@ -30,6 +29,37 @@ export default function Materia() {
     const handleCancel = () => {
         setIsModalVisible(false);
     };
+    const ApiGetData = async () => {
+        const db = getDatabase(app);
+        const starCountRef = ref(db, "subjects/");
+        let arrayToSort: IMateria[] = []
+        onValue(starCountRef, (snapshot) => {
+            setMaterias([]);
+            snapshot.forEach((childSnapshot) => {
+                const childData: IMateria = childSnapshot.val();
+                const data = { ...childData, highlighted: false }
+                arrayToSort = [...arrayToSort, data]
+            });
+            arrayToSort.sort((a, b) => {
+                if (a.name > b.name) {
+                    return 1;
+                }
+                if (a.name < b.name) {
+                    return -1;
+                }
+                return 0;
+            })
+            setMaterias(arrayToSort)
+            setCardLoading(false)
+        });
+
+
+    }
+
+    useEffect(() => {
+        ApiGetData()
+        setCardLoading(false)
+    }, [])
 
     return (
         <Container>
@@ -40,8 +70,8 @@ export default function Materia() {
             <Title style={{ textAlign: 'center', marginBottom: '.5rem' }}>Matérias</Title>
             <Paragraph style={{ textAlign: 'center', marginBottom: '1rem' }}>Aqui você encontra todas as matérias do curso de Sistemas de informação.</Paragraph>
             <hr style={{ marginBottom: '2rem' }} />
-            
-            <Content showModal={showModal}  />
+
+            <Content showModal={showModal} cardLoading={cardLoading} />
             <Modal visible={isModalVisible} handleCancel={handleCancel} handleOk={handleOk} data={modalData} />
         </Container>
     )

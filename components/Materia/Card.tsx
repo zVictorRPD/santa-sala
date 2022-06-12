@@ -6,6 +6,9 @@ import styles from './style.module.sass'
 import {
     PartitionOutlined,
     EyeOutlined,
+    CheckCircleOutlined,
+    ClockCircleOutlined,
+    QuestionCircleOutlined
 } from '@ant-design/icons';
 import { useRecoilState } from 'recoil';
 import { materiasArray } from '../../hooks/materia.hooks';
@@ -16,6 +19,12 @@ interface MateriaCardProps {
     cardLoading: boolean;
     id: number;
     showModal: (data: IMateria) => void;
+}
+
+const stateTitle: any = {
+    'todo': 'Matéria a fazer',
+    'doing': 'Matéria sendo feita',
+    'done': 'Matéria já feita'
 }
 
 
@@ -33,8 +42,7 @@ export default function MateriaCard(props: MateriaCardProps) {
 
     const listHighlighted = (subject: IMateria) => {
         clearHighligths();
-
-        
+        if (subject.highlighted) return
         const highlightedLocks: any[] = [];
         materias.map((materia) => {
             if (locks.includes(materia.name) || dependencies.includes(materia.name) || subject === materia) {
@@ -45,6 +53,38 @@ export default function MateriaCard(props: MateriaCardProps) {
         })
         setMaterias(highlightedLocks)
     }
+
+    const getStateIcon = (state: string) => {
+        switch (state) {
+            case 'done': return <CheckCircleOutlined onClick={() => changeState(props.subject)} width={16} />
+            case 'doing': return <ClockCircleOutlined onClick={() => changeState(props.subject)} width={16} />
+            default: return <QuestionCircleOutlined onClick={() => changeState(props.subject)} width={16} />
+        }
+    }
+
+    const changeState = (subject: IMateria) => {
+        switch (subject.state) {
+            case 'done': subject = { ...subject, state: 'todo' }
+                break
+            case 'doing': subject = { ...subject, state: 'done' }
+                break
+            default: subject = { ...subject, state: 'doing' }
+        }
+        const arrayToSort = [...materias.filter(materia => {
+            return materia.id !== subject.id
+        }), subject]
+        arrayToSort.sort((a, b) => {
+            if (a.name > b.name) {
+                return 1;
+            }
+            if (a.name < b.name) {
+                return -1;
+            }
+            return 0;
+        })
+        setMaterias(arrayToSort)
+    }
+
     return (
         <Card
             key={props.id}
@@ -52,10 +92,13 @@ export default function MateriaCard(props: MateriaCardProps) {
             loading={props.cardLoading}
             actions={[
                 <Tooltip placement="bottom" title='Destacar suas depêndencias' key={'Destacar'}>
-                    <PartitionOutlined onClick={() => listHighlighted(props.subject)} />
+                    <PartitionOutlined width={16} onClick={() => listHighlighted(props.subject)} />
+                </Tooltip>,
+                <Tooltip placement="bottom" title={stateTitle[props.subject.state || 'todo']} key={'Estado'}>
+                    {getStateIcon(props?.subject?.state || 'todo')}
                 </Tooltip>,
                 <Tooltip placement="bottom" title='Visualizar informações da matéria' key={'Visualizar'}>
-                    <EyeOutlined onClick={() => props.showModal(props.subject)} />
+                    <EyeOutlined width={16} onClick={() => props.showModal(props.subject)} />
                 </Tooltip>,
             ]}
             bodyStyle={{ padding: '0' }}
