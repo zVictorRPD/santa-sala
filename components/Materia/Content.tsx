@@ -17,7 +17,7 @@ export default function Content(props: ContentProps) {
     return (
         <FluxContainer hideScrollbars={true}>
             <Overflow>
-                <Row gutter={[16, 32]}>
+                <Row gutter={[8, 32]}>
                     {[...Array(8)].map((col, index) => {
                         return (
                             <Col key={index} span={3}>

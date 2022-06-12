@@ -1,5 +1,5 @@
 import { Card, Tooltip, Typography } from 'antd';
-import { SubjectCard, SubjectCardBody, SubjectCardHeader } from './style';
+import { SubjectCard, SubjectCardBody, SubjectCardFooter, SubjectCardHeader } from './style';
 import { IMateria } from '../../interface/subject';
 const { Title } = Typography;
 import styles from './style.module.sass'
@@ -25,6 +25,12 @@ const stateTitle: any = {
     'todo': 'Matéria a fazer',
     'doing': 'Matéria sendo feita',
     'done': 'Matéria já feita'
+}
+
+const stateColor: any = {
+    'todo': '#77449c',
+    'doing': '#096dd9',
+    'done': '#389e0d'
 }
 
 
@@ -56,9 +62,9 @@ export default function MateriaCard(props: MateriaCardProps) {
 
     const getStateIcon = (state: string) => {
         switch (state) {
-            case 'done': return <CheckCircleOutlined onClick={() => changeState(props.subject)} width={16} />
-            case 'doing': return <ClockCircleOutlined onClick={() => changeState(props.subject)} width={16} />
-            default: return <QuestionCircleOutlined onClick={() => changeState(props.subject)} width={16} />
+            case 'done': return <CheckCircleOutlined onClick={() => changeState(props.subject)} style={{ color: stateColor[state] }} width={16} />
+            case 'doing': return <ClockCircleOutlined onClick={() => changeState(props.subject)} style={{ color: stateColor[state] }} width={16} />
+            default: return <QuestionCircleOutlined onClick={() => changeState(props.subject)} style={{ color: stateColor[state] }} width={16} />
         }
     }
 
@@ -106,33 +112,48 @@ export default function MateriaCard(props: MateriaCardProps) {
         setMaterias(arrayToSort)
     }
 
+    const getSassState = (state: string) => {
+        switch (state) {
+            case 'done': return styles.highlightedDone
+            case 'doing': return styles.highlightedDoing
+            default: return styles.highlightedTodo
+        }
+    }
+
     return (
         <Card
             key={props.id}
             bordered={false}
             loading={props.cardLoading}
-            actions={[
-                <Tooltip placement="bottom" title='Destacar suas depêndencias' key={'Destacar'}>
-                    <PartitionOutlined width={16} onClick={() => listHighlighted(props.subject)} />
-                </Tooltip>,
-                <Tooltip placement="bottom" title={stateTitle[props.subject.state || 'todo']} key={'Estado'}>
-                    {getStateIcon(props?.subject?.state || 'todo')}
-                </Tooltip>,
-                <Tooltip placement="bottom" title='Visualizar informações da matéria' key={'Visualizar'}>
-                    <EyeOutlined width={16} onClick={() => props.showModal(props.subject)} />
-                </Tooltip>,
-            ]}
             bodyStyle={{ padding: '0' }}
-            style={{ marginBottom: 16, border: '1px solid rgb(119, 68, 156,.06)' }}
-            className={props.subject.highlighted ? styles.highlighted : ''}
+            style={{ marginBottom: 8, border: '1px solid rgb(119, 68, 156,.06)' }}
+            className={props.subject.highlighted ? getSassState(props.subject.state || 'todo') : ''}
+            size={'small'}
         >
             <SubjectCard>
-                <SubjectCardHeader>
+                <SubjectCardHeader stateColor={stateColor[props.subject.state || 'todo']}>
                     {props.subject.code} - {props.subject.hours}h
                 </SubjectCardHeader>
                 <SubjectCardBody>
-                    <Title style={{ margin: 0, fontWeight: 400 }} level={3}>{props.subject.name}</Title>
+                    <Title style={{ margin: 0, fontWeight: 400, textTransform: 'lowercase' }} level={5}>{props.subject.name}</Title>
                 </SubjectCardBody>
+                <SubjectCardFooter>
+                    <li>
+                        <Tooltip placement="bottom" title='Destacar suas depêndencias' key={'Destacar'}>
+                            <PartitionOutlined width={16} onClick={() => listHighlighted(props.subject)} style={{ color: stateColor[props.subject.state || 'todo'] }} />
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip placement="bottom" title={stateTitle[props.subject.state || 'todo']} key={'Estado'}>
+                            {getStateIcon(props?.subject?.state || 'todo')}
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip placement="bottom" title='Visualizar informações da matéria' key={'Visualizar'}>
+                            <EyeOutlined width={16} onClick={() => props.showModal(props.subject)} style={{ color: stateColor[props.subject.state || 'todo'] }} />
+                        </Tooltip>
+                    </li>
+                </SubjectCardFooter>
             </SubjectCard>
         </Card>
 

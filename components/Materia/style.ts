@@ -43,16 +43,44 @@ export const SubjectCard = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 export const SubjectCardHeader = styled.div`
   width: 100%;
-  background: #77449c;
   text-align: center;
   color: #fff;
-  padding: 3px 0;
+  padding: 0;
+  background: ${(props) => props.stateColor};
 `;
 export const SubjectCardBody = styled.div`
   text-align: center;
   padding: 0 4px;
   margin: auto;
   width: 100%;
+`;
+
+export const SubjectCardFooter = styled.ul`
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  list-style: none;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  &:before {
+    display: table;
+    content: "";
+  }
+  li {
+    width: 33.333%;
+    float: left;
+    margin: 5px 0;
+    color: rgba(0,0,0,.45);
+    text-align: center;
+    display: flex;
+    &:not(:last-child) {
+      border-right: 1px solid rgba(0,0,0,.06);
+    }
+    span{
+      width: 100%;
+      font-size: 16px;
+    }
+  }
 `;
