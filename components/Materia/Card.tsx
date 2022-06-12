@@ -63,6 +63,7 @@ export default function MateriaCard(props: MateriaCardProps) {
     }
 
     const changeState = (subject: IMateria) => {
+        //troca o estado
         switch (subject.state) {
             case 'done': subject = { ...subject, state: 'todo' }
                 break
@@ -70,6 +71,7 @@ export default function MateriaCard(props: MateriaCardProps) {
                 break
             default: subject = { ...subject, state: 'doing' }
         }
+        //ordena as matérias
         const arrayToSort = [...materias.filter(materia => {
             return materia.id !== subject.id
         }), subject]
@@ -82,6 +84,25 @@ export default function MateriaCard(props: MateriaCardProps) {
             }
             return 0;
         })
+
+        //pega os estados
+        const storageData = JSON.parse(localStorage.getItem("stateSaved") || '[{}]');
+        const newStorageData: object[] = []
+
+        //verificar se o estado já existe e o altera
+        const editStorage = storageData.some((element: { code: string; state: string }) => {
+            if (element.code === subject.code) {
+                element.state = subject.state
+                newStorageData.push(...storageData);
+                return true
+            }
+            return false
+        });
+        //se ele n existe, adiciona o mesmo
+        if (!editStorage) {
+            newStorageData.push(...storageData, { 'code': subject.code, 'state': subject.state });
+        }
+        localStorage.setItem("stateSaved", JSON.stringify(newStorageData))
         setMaterias(arrayToSort)
     }
 

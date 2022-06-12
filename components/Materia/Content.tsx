@@ -9,7 +9,6 @@ const { Title } = Typography;
 interface ContentProps {
     showModal: (data: IMateria) => void;
     cardLoading: boolean;
-    // setCardLoading: () => void;
 }
 
 export default function Content(props: ContentProps) {

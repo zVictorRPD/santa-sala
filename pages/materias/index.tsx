@@ -38,8 +38,19 @@ export default function Materia() {
             snapshot.forEach((childSnapshot) => {
                 const childData: IMateria = childSnapshot.val();
                 const data = { ...childData, highlighted: false }
+                //pega o estado da matéria
+                const stateList = JSON.parse(localStorage.getItem("stateSaved") || '[{}]');
+                stateList.some((element: { code: string; state: string }) => {
+                    if (data.code === element.code) {
+                        data.state = element.state
+                    }
+                    return
+                });
+
+
                 arrayToSort = [...arrayToSort, data]
             });
+
             arrayToSort.sort((a, b) => {
                 if (a.name > b.name) {
                     return 1;
@@ -49,11 +60,12 @@ export default function Materia() {
                 }
                 return 0;
             })
+
+
+
             setMaterias(arrayToSort)
             setCardLoading(false)
         });
-
-
     }
 
     useEffect(() => {
