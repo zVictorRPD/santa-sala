@@ -44,7 +44,11 @@ export const SubjectCard = styled.div`
   flex-direction: column;
 `;
 
-export const SubjectCardHeader = styled.div`
+interface IPropsCardHeader {
+  stateColor: string;
+} 
+
+export const SubjectCardHeader = styled.div<IPropsCardHeader>`
   width: 100%;
   text-align: center;
   color: #fff;
