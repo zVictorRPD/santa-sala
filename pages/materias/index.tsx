@@ -10,7 +10,7 @@ import { Container } from '../../components/Materia/style';
 import Content from '../../components/Materia/Content';
 import Modal from '../../components/Materia/Modal';
 import ConfigDrawer from '../../components/Materia/ConfigDrawer';
-import { ConfigFixedButton } from './style';
+import { ConfigFixedButton } from '../../components/Materia/style';
 const { Title, Paragraph } = Typography;
 
 

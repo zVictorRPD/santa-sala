@@ -88,3 +88,10 @@ export const SubjectCardFooter = styled.ul`
     }
   }
 `;
+
+export const ConfigFixedButton = styled.button`
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+`;
+
