@@ -4,7 +4,8 @@ import { Flex } from "../../styles/global";
 import {
     UserOutlined,
     LinkedinOutlined,
-    MailOutlined
+    MailOutlined,
+    FileProtectOutlined
 } from '@ant-design/icons';
 import styles from './style.module.sass'
 
@@ -30,16 +31,17 @@ export default function ProfessorHeader(props: ProfessorHeaderProps) {
                     <Flex style={{ margin: '16px 0', justifyContent: 'start' }}>
                         {props.professor?.social?.email && <a href={`mailto:${props.professor?.social?.email}`} rel="noreferrer"><MailOutlined className={styles.modalIcon} /></a>}
                         {props.professor?.social?.linkedin && <a target="_blank" href={props.professor?.social?.linkedin} rel="noreferrer"><LinkedinOutlined className={styles.modalIconPerfil} style={{ color: '#0077b5' }} /></a>}
+                        {props.professor?.social?.lattes && <a target="_blank" href={props.professor?.social?.lattes} rel="noreferrer"><FileProtectOutlined className={styles.modalIconPerfil} style={{ color: '#36366a' }} /></a>}
                     </Flex>
                     <Paragraph style={{ textAlign: 'justify' }}>
                         <Text strong>Descrição:</Text> {props.professor?.description}
                     </Paragraph>
-                    <Paragraph style={{ marginTop: '.5rem' }}>
+                    {/* <Paragraph style={{ marginTop: '.5rem' }}>
                         <>
                             <Text strong>Matérias:</Text>
-                            {props.professor?.subjects.map((tag, index) => { return <Badge style={{ marginLeft: '5px' }} count={tag} key={index} /> })}
+                            {props.professor?.subjects?.map((tag, index) => { return <Badge style={{ marginLeft: '5px' }} count={tag} key={index} /> })}
                         </>
-                    </Paragraph>
+                    </Paragraph> */}
                 </Col>
             </Row>
         </>

@@ -22,7 +22,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Site criado por: zVictor_RPD com a colaboração de Felps e Paçoca <br />Todos os direitos reservados ©
+          {/* Site criado por: zVictor_RPD com a colaboração de Felps e Paçoca <br /> */}
+          Todos os direitos reservados ©
         </Footer>
       </Layout>
     </RecoilRoot>

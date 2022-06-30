@@ -3,7 +3,8 @@ import { Modal, Avatar, Button, Typography, Badge } from 'antd';
 import {
     UserOutlined,
     LinkedinOutlined,
-    MailOutlined
+    MailOutlined,
+    FileProtectOutlined
 } from '@ant-design/icons';
 import { Flex } from '../../styles/global';
 import Link from 'next/link';
@@ -37,9 +38,13 @@ export default function ProfessorModal(props: ProfessorModalProps) {
             <Flex style={{ marginTop: '16px' }}>
                 {props.modalProfessor?.social?.email && <a href={`mailto:${props.modalProfessor?.social?.email}`} rel="noreferrer"><MailOutlined className={styles.modalIcon} /></a>}
                 {props.modalProfessor?.social?.linkedin && <a target="_blank" href={props.modalProfessor?.social?.linkedin} rel="noreferrer"><LinkedinOutlined className={styles.modalIcon} style={{ color: '#0077b5' }} /></a>}
+                {props.modalProfessor?.social?.lattes && <a target="_blank" href={props.modalProfessor?.social?.lattes} rel="noreferrer"><FileProtectOutlined className={styles.modalIcon} style={{ color: '#36366a' }} /></a>}
             </Flex>
             <Paragraph className={styles.phraseLine}>
-                <Text italic>{`"${props.modalProfessor?.phrase}"`}</Text>
+                <Text>{`${props.modalProfessor?.phrase}`}</Text>
+            </Paragraph>
+            <Paragraph style={{ textAlign: 'justify' }}>
+                <Text strong>Formação:</Text> Doutorado
             </Paragraph>
             <Paragraph style={{ textAlign: 'justify' }}>
                 <Text strong>Descrição:</Text> {props.modalProfessor?.description}

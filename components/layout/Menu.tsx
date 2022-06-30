@@ -35,13 +35,13 @@ export default function HeaderMenu() {
                             width='40px'
                             height='40px'
                         />
-                        <h3>Santa Sala</h3>
+                        <h3>UFRRJ - SI</h3>
                     </Logo>
                 </Link>
-                <Menu.Item><Link href="/alunos">Alunos</Link></Menu.Item>
+                {/* <Menu.Item><Link href="/alunos">Alunos</Link></Menu.Item> */}
                 <Menu.Item><Link href="/professores">Professores</Link></Menu.Item>
                 <Menu.Item><Link href="/materias">Matérias</Link></Menu.Item>
-                <Menu.Item><Link href="/mencao-honrosa">Menções Honrosas</Link></Menu.Item>
+                {/* <Menu.Item><Link href="/mencao-honrosa">Menções Honrosas</Link></Menu.Item> */}
                 {/* <Dropdown overlay={studentMenu} placement="bottomLeft"><Menu.Item>Item 1</Menu.Item></Dropdown> */}
             </Menu>
         </>

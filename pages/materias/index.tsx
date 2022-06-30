@@ -9,6 +9,8 @@ import { useRecoilState } from 'recoil';
 import { Container } from '../../components/Materia/style';
 import Content from '../../components/Materia/Content';
 import Modal from '../../components/Materia/Modal';
+import ConfigDrawer from '../../components/Materia/ConfigDrawer';
+import { ConfigFixedButton } from './style';
 const { Title, Paragraph } = Typography;
 
 
@@ -17,11 +19,12 @@ export default function Materia() {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [modalData, setModalData] = useState<IMateria | undefined>();
     const [cardLoading, setCardLoading] = useState(true);
+    const [isDrawerVisible, setIsDrawerVisible] = useState(false);
+
     const showModal = (data: IMateria) => {
         setIsModalVisible(true);
         setModalData(data);
     };
-
     const handleOk = () => {
         setIsModalVisible(false);
     };
@@ -29,6 +32,15 @@ export default function Materia() {
     const handleCancel = () => {
         setIsModalVisible(false);
     };
+
+    const openDrawer = () => {
+        setIsDrawerVisible(true);
+    }
+
+    const closeDrawer = () => {
+        setIsDrawerVisible(false);
+    };
+
     const ApiGetData = async () => {
         const db = getDatabase(app);
         const starCountRef = ref(db, "subjects/");
@@ -84,7 +96,10 @@ export default function Materia() {
             <hr style={{ marginBottom: '2rem' }} />
 
             <Content showModal={showModal} cardLoading={cardLoading} />
+
             <Modal visible={isModalVisible} handleCancel={handleCancel} handleOk={handleOk} data={modalData} />
+            <ConfigDrawer visible={isDrawerVisible} closeDrawer={closeDrawer} />
+            <ConfigFixedButton onClick={() => setIsDrawerVisible(true)}>Filtro</ConfigFixedButton>
         </Container>
     )
 }

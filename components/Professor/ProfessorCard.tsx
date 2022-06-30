@@ -49,7 +49,7 @@ export default function ProfessorCard(props: ProfessorCardProps) {
                         <Meta
                             avatar={<Avatar size={48} src={props.professor?.profile} />}
                             title={props.professor?.nickname}
-                            description={<Text italic>{`"${props.professor?.phrase}"`}</Text>}
+                            description={<Text>{`"${props.professor?.phrase}"`}</Text>}
                         />
                     </Card>
                 </Badge.Ribbon>

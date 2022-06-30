@@ -12,5 +12,6 @@ export interface Iprofessor {
   social: {
     email: string;
     linkedin?: string;
+    lattes?: string;
   };
 }

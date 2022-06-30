@@ -21,7 +21,7 @@ export default function ProfessorTabs(props: ProfessorTabsProps) {
                     tab={
                         <span>
                             <FontColorsOutlined />
-                            Frases icônicas
+                            Matérias
                         </span>
                     }
                     key="1"
